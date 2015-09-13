@@ -19,6 +19,7 @@
   </div>
   <ul class="nav navbar-nav" ng-if="currentUser">
     <li data-match-route="/home"><a href="/home">Home</a></li>
+    <li data-match-route="/add"><a href="/add">Add</a></li>
   </ul>
   <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
     <li data-match-route="/$"><a href="/">Login</a></li>
@@ -49,6 +50,7 @@
 <script src="controllers/navbar.js"></script>
 <script src="controllers/login.js"></script>
 <script src="controllers/signup.js"></script>
+<script src="controllers/controller.js"></script>
 <script src="services/auth.js"></script>
 <script src="services/subscription.js"></script>
 

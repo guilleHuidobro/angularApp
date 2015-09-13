@@ -20,6 +20,13 @@ var _ = require('lodash');
 
 var tokenSecret = 'your unique secret';
 
+/**/
+
+var mongojs = require('mongojs');
+var db = mongojs('contactlist', ['contactlist']);
+
+/**/
+
 var userSchema = new mongoose.Schema({
   name: { type: String, trim: true, required: true },
   email: { type: String, unique: true, lowercase: true, trim: true },
@@ -65,6 +72,57 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+/**/
+
+app.get('/add', function (req, res) {
+  console.log('I received a GET request');
+
+  db.contactlist.find(function (err, docs) {
+    console.log(docs);
+    res.json(docs);
+  });
+});
+
+app.post('/add', function (req, res) {
+  console.log(req.body);
+  db.contactlist.insert(req.body, function(err, doc) {
+    res.json(doc);
+  });
+});
+
+app.delete('/add/:id', function (req, res) {
+  var id = req.params.id;
+  console.log(id);
+  db.contactlist.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
+    res.json(doc);
+  });
+});
+
+app.get('/add/:id', function (req, res) {
+  var id = req.params.id;
+  console.log(id);
+  db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
+    res.json(doc);
+  });
+});
+
+app.put('/add/:id', function (req, res) {
+  var id = req.params.id;
+  console.log(req.body.name);
+  db.contactlist.findAndModify({
+    query: {_id: mongojs.ObjectId(id)},
+    update: {$set: {name: req.body.name, email: req.body.email, number: req.body.number}},
+    new: true}, function (err, doc) {
+      res.json(doc);
+    }
+  );
+});
+
+
+/**/
 
 function ensureAuthenticated(req, res, next) {
   if (req.headers.authorization) {

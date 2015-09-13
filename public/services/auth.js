@@ -141,6 +141,7 @@ angular.module('MyApp')
       logout: function() {
         delete $window.localStorage.token;
         $rootScope.currentUser = null;
+        $location.path('/login');
         $alert({
           content: 'You have been logged out.',
           animation: 'fadeZoomFadeDown',

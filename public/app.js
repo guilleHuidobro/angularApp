@@ -15,6 +15,10 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngRoute', 'ngAnimate', 'mg
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
+      .when('/add', {
+        templateUrl: 'views/add.html',
+        controller: 'AppCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
