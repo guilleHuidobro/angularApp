@@ -9,7 +9,6 @@ angular.module('MyApp')
     };
 
     $http.get('/add').success(function(response) {
-    	console.log(response);
     $scope.contactlist = response;
     $scope.contact = "";
   });
