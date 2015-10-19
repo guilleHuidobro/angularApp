@@ -109,6 +109,29 @@ app.get('/add/:id', function (req, res) {
   });
 });
 
+app.get('/add/:id', function (req, res){
+db.contactlist.where({ name: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') }, function (err,doc){
+    res.json(doc);
+  });
+});
+
+/*
+  var query = Show.find();
+  if (req.query.genre) {
+    query.where({ genre: req.query.genre });
+  } else if (req.query.alphabet) {
+    query.where({ name: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') });
+  } else {
+    query.limit(12);
+  }
+  query.exec(function(err, shows) {
+    if (err) return next(err);
+    res.send(shows);
+  });
+*/
+
+
+
 app.put('/add/:id', function (req, res) {
   var id = req.params.id;
   console.log(req.body.name);
