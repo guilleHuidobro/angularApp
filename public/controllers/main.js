@@ -6,13 +6,15 @@ angular.module('MyApp')
 
     $scope.headingTitle = 'Top 10';
 
+    $scope.contactlist = Contact.query();
+
     $scope.filterByAlphabet = function(char) {
       console.log("$$$$$$$$$ "+ char +" $$$$$$$$$$$$");
       $scope.contactlist = Contact.query({ alphabet: char });
       $scope.headingTitle = char;
     };
 
-    $http.get('/add').success(function(response) {
+    $http.get('/home').success(function(response) {
     $scope.contactlist = response;
     $scope.contact = "";
   });

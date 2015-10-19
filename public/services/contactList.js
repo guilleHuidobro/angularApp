@@ -1,4 +1,4 @@
 angular.module('MyApp')
   .factory('Contact', ['$resource', function($resource) {
-    return $resource('/add/:_id');
+    return $resource('/home/:_id');
   }]);
