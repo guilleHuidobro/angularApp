@@ -109,7 +109,8 @@ app.get('/add/:id', function (req, res) {
   });
 });
 
-app.get('/add/:id', function (req, res){
+app.get('/home/:id', function (req, res){
+  debugger;
 db.contactlist.where({ name: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') }, function (err,doc){
     res.json(doc);
   });

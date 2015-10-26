@@ -3,6 +3,10 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngRoute', 'ngAnimate', 'mg
     $locationProvider.html5Mode(true);
 
     $routeProvider
+      .when('/contacts',{
+        templateUrl:'views/contacts.html',
+        controller:'ContactController'
+      })
       .when('/home', {
         templateUrl: 'views/home.html',
         controller: 'MainCtrl'
